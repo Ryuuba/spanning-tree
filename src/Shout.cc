@@ -30,13 +30,12 @@ void Shout::handleMessage(omnetpp::cMessage* recvMsg) {
   else if(status == Status::IDLE) {
     if (recvMsg->getKind() == MsgKind::QUERY) {
       parent = recvMsg->getArrivalGate()->getIndex();
-      treeNeighborhood.push_back(parent);
       msg = new omnetpp::cMessage("yes", MsgKind::YES);
       send(msg, "port$o", parent);
       counter++;
       if (gateSize("port$o") == counter) status = Status::DONE;
       else {
-        localFlooding(recvMsg, parent);
+        localFlooding(recvMsg);
         status = Status::ACTIVE;
       }
     }
@@ -51,7 +50,7 @@ void Shout::handleMessage(omnetpp::cMessage* recvMsg) {
       send(recvMsg, "port$o", senderPort);
     }
     else if (recvMsg->getKind() == MsgKind::YES) {
-      treeNeighborhood.push_back(senderPort);
+      children.push_back(senderPort);
       counter++;
       delete recvMsg;
       if (counter == gateSize("port$o")) status = Status::DONE;
@@ -71,10 +70,11 @@ void Shout::handleMessage(omnetpp::cMessage* recvMsg) {
 void Shout::refreshDisplay() const {
   std::string info = status.str();
   info += '\n';
-  for (size_t i = 0; i < treeNeighborhood.size(); i++) {
-    info += std::to_string(treeNeighborhood[i]) + ',';
-    gate("port$o", treeNeighborhood[i])->getChannel()->
-            getDisplayString().setTagArg("ls", 0, "red");
+  for (auto& port : children) {
+    info += std::to_string(port) + ',';
+    gate("port$o", port)->getChannel()->getDisplayString().setTagArg("ls", 0, "red");
   }
+  if (parent >= 0)
+    gate("port$o", parent)->getChannel()->getDisplayString().setTagArg("ls", 0, "red");
   getDisplayString().setTagArg("t", 0, info.c_str());
 }

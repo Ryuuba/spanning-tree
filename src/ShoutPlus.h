@@ -11,16 +11,16 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-//
+// 
 
-package dsbase;
-import dsbase.INode;
+#if !defined(SHOUT_PLUS_H)
+#define SHOUT_PLUS_H
 
-simple BaseNode like INode
-{
-    parameters:
-        @display("i=device/laptop");
-        double startTime @unit(s); // The time at which simulation starts
-    gates:
-        inout port[];     // Bidirectional link
-}
+#include "Shout.h"
+
+class ShoutPlus : public Shout {
+public:
+  void handleMessage(omnetpp::cMessage*) override;
+};
+
+#endif // SHOUT_PLUS_H

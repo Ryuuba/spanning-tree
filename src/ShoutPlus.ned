@@ -14,13 +14,9 @@
 //
 
 package dsbase;
-import dsbase.INode;
+import dsbase.Shout;
 
-simple BaseNode like INode
-{
+simple ShoutPlus extends Shout {
     parameters:
-        @display("i=device/laptop");
-        double startTime @unit(s); // The time at which simulation starts
-    gates:
-        inout port[];     // Bidirectional link
+        @class(ShoutPlus);
 }

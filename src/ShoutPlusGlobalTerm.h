@@ -11,16 +11,20 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-//
+// 
 
-package dsbase;
-import dsbase.INode;
+#if !defined(SHOUT_PLUS_GLOBAL_TERM_H)
+#define SHOUT_PLUS_GLOBAL_TERM_H
 
-simple BaseNode like INode
-{
-    parameters:
-        @display("i=device/laptop");
-        double startTime @unit(s); // The time at which simulation starts
-    gates:
-        inout port[];     // Bidirectional link
-}
+#include "ShoutPlus.h"
+
+class ShoutPlusGlobalTerm : public ShoutPlus {
+protected:
+  /** @brief Counter registers the number of check msg a parent has received from its children */
+  unsigned checkCounter;
+public:
+  ShoutPlusGlobalTerm() : checkCounter(0) { }
+  void handleMessage(omnetpp::cMessage*) override;
+};
+
+#endif // SHOUT_PLUS_GLOBAL_TERM_H

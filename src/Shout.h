@@ -23,8 +23,8 @@ class Shout : public BaseNode {
 protected:
   /** @brief The ID of the node starting the experiment */
   int initiator;
-  /** @brief the set of ports in T */
-  std::vector<int> treeNeighborhood;
+  /** @brief the set of ports of the children of this node in T*/
+  std::vector<int> children;
   /** @brief Register indicating if this node is the root of T */
   bool root;
   /** @brief Register indicating the port ID of the parent of this node */

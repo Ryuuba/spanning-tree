@@ -1,19 +1,19 @@
 E # 0 t 0 m 1 ce -1 msg -1
-SB v 1286 rid Mesh-0-20210131-12:46:42-11184 b 1000
+SB v 1286 rid ShoutPlus-0-20210131-12:57:45-12488 b 1000
 KF p -1 c "" s ""
-MC id 1 c omnetpp::cModule t dsbase.simulations.Mesh5 n Mesh5 cm 1
+MC id 1 c omnetpp::cModule t dsbase.simulations.MeshShoutPlus n MeshShoutPlus cm 1
 MS id 1 d bgb=500,500
-MC id 2 c Shout t dsbase.Shout pid 1 n node[0]
+MC id 2 c ShoutPlus t dsbase.ShoutPlus pid 1 n node[0]
 MS id 2 d i=device/laptop
-MC id 3 c Shout t dsbase.Shout pid 1 n node[1]
+MC id 3 c ShoutPlus t dsbase.ShoutPlus pid 1 n node[1]
 MS id 3 d i=device/laptop
-MC id 4 c Shout t dsbase.Shout pid 1 n node[2]
+MC id 4 c ShoutPlus t dsbase.ShoutPlus pid 1 n node[2]
 MS id 4 d i=device/laptop
-MC id 5 c Shout t dsbase.Shout pid 1 n node[3]
+MC id 5 c ShoutPlus t dsbase.ShoutPlus pid 1 n node[3]
 MS id 5 d i=device/laptop
-MC id 6 c Shout t dsbase.Shout pid 1 n node[4]
+MC id 6 c ShoutPlus t dsbase.ShoutPlus pid 1 n node[4]
 MS id 6 d i=device/laptop
-MC id 7 c Shout t dsbase.Shout pid 1 n node[5]
+MC id 7 c ShoutPlus t dsbase.ShoutPlus pid 1 n node[5]
 MS id 7 d i=device/laptop
 GC m 2 g 1048576 n port$i i 0 o 0
 GC m 2 g 1572864 n port$o i 0 o 1
@@ -105,7 +105,7 @@ MB sm 1 tm 5 m initialize(0)
 CM id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n TIMER k 8 pe -1
 BS id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n TIMER k 8 pe 0
 ES t 5
-- INFO (Shout)Mesh5.node[3]:Node[3] is the initiator
+- INFO (ShoutPlus)MeshShoutPlus.node[3]:Node[3] is the initiator
 ME
 MB sm 1 tm 6 m initialize(0)
 ME

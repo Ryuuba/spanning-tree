@@ -34,19 +34,19 @@ protected:
 protected:
   /** @brief Broadcasts a message to N(x) 
    *  @param first - a valid pointer to a message
-   *  @return a null pointer
+   *  @return a null pointer to the received message
   */
   omnetpp::cMessage* localBroadcast(omnetpp::cMessage*);
   /** @brief Broadcasts a message to N(x) - {senderID}
    *  @param first - a valid pointer to a message
    *  @param second - the ID of the sender
-   *  @return a null pointer
+   *  @return a null pointer to the received message
   */
-  omnetpp::cMessage* localFlooding(omnetpp::cMessage*, int);
+  omnetpp::cMessage* localFlooding(omnetpp::cMessage*);
   /** @brief Multicasts a message to a subset of N(x)
    *  @param first - a valid pointer to a message
    *  @param second - a vector holding the IDs of receivers
-   *  @return a null pointer
+   *  @return a null pointer to the received message
   */
   omnetpp::cMessage* localMulticast(
     omnetpp::cMessage*, const std::vector<int>&
@@ -56,6 +56,8 @@ public:
   BaseNode() : timer(nullptr), msg(nullptr), startTime(0.0), status() { }
   /** @brief Default destructor which tries to delete the timer */
   virtual ~BaseNode() { cancelAndDelete(timer); }
+  virtual void initialize() = 0;
+  virtual void handleMessage(omnetpp::cMessage*) = 0;
 };
 
 #endif // BASENODE_H
